@@ -12,7 +12,7 @@
 <hr>
 <div class="row">
   <div class="col-md-12">
-    <app-odd *ngIf="(gameNumber%2==0)"></app-odd>
-    <app-even *ngIf="(gameNumber%2!=0)"></app-even>
+    <app-odd [gameNumber]="gameNumber" *ngIf="(gameNumber%2!=0)"></app-odd>
+    <app-even [gameNumber]="gameNumber" *ngIf="(gameNumber%2==0)"></app-even>
   </div>
 </div>
