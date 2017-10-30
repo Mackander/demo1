@@ -1,0 +1,11 @@
+<div class="row">
+    <div class="col-md-12">
+        <button class="btn btn-primary" (click)='btnClick()'>Display Details</button>
+        <p [hidden]='toggler' class="alert alert-info" role="alert"> Practical work for assignment 3 :-)</p>
+        <div *ngFor="let item of clickCollector; let n = index" 
+        [ngStyle]="{backgroundColor: n>=4? 'blue' : 'transparent'}" 
+        [ngClass]="{'whiteColor':n>=4}">
+            {{item}}
+        </div>
+    </div>
+</div>

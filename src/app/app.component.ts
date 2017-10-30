@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  gameNumber: number = 1;
+
+  numberCollector(data: { gameNumber: number }) {
+    this.gameNumber = data.gameNumber;
+  }
 }

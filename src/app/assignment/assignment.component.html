@@ -1,0 +1,21 @@
+<div class="row">
+    <br>
+</div>
+<div class="row">
+    <div class="col-md-2">User Name : </div>
+    <div class="col-md-6">
+        <input type="text" class="form-control" [(ngModel)]="userName">
+    </div>
+    <div class="col-md-4"></div>
+    <br>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <p>You have entered : {{userName}}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <button class="btn btn-primary" [disabled]='!(userName)' (click)="userName=''">Add User Name</button>
+    </div>
+</div>
