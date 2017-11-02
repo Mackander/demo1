@@ -10,7 +10,9 @@ import { OddComponent } from './assignment4/odd/odd.component';
 import { EvenComponent } from './assignment4/even/even.component';
 import { BetterHighlightDirective } from './Directives/better-highlight.directive';
 import { UnlessDirective } from './Directives/unless.directive';
-
+import { ActiveUsersComponent } from './assignment5/active-users/active-users.component';
+import { InactiveUsersComponent } from './assignment5/inactive-users/inactive-users.component';
+import { UserService } from './assignment5/users.service';
 
 @NgModule({
   declarations: [
@@ -21,13 +23,15 @@ import { UnlessDirective } from './Directives/unless.directive';
     OddComponent,
     EvenComponent,
     BetterHighlightDirective,
-    UnlessDirective
+    UnlessDirective,
+    ActiveUsersComponent,
+    InactiveUsersComponent
   ],
   imports: [
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
