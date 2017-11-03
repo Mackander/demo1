@@ -13,6 +13,7 @@ import { UnlessDirective } from './Directives/unless.directive';
 import { ActiveUsersComponent } from './assignment5/active-users/active-users.component';
 import { InactiveUsersComponent } from './assignment5/inactive-users/inactive-users.component';
 import { UserService } from './assignment5/users.service';
+import { CounterService } from './assignment5/counter.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { UserService } from './assignment5/users.service';
     BrowserModule,
     FormsModule
   ],
-  providers: [UserService],
+  providers: [UserService, CounterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
