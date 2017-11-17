@@ -14,6 +14,7 @@ import { ActiveUsersComponent } from './assignment5/active-users/active-users.co
 import { InactiveUsersComponent } from './assignment5/inactive-users/inactive-users.component';
 import { UserService } from './assignment5/users.service';
 import { CounterService } from './assignment5/counter.service';
+import { UserFormComponent } from './assignment6/user-form/user-form.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CounterService } from './assignment5/counter.service';
     BetterHighlightDirective,
     UnlessDirective,
     ActiveUsersComponent,
-    InactiveUsersComponent
+    InactiveUsersComponent,
+    UserFormComponent
   ],
   imports: [
     BrowserModule,
