@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-user-form',
@@ -7,12 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserFormComponent implements OnInit {
 
+  @ViewChild("f") userForm: NgForm;
+
   constructor() { }
   subscriptionTypes = [{ key: 'basic', displayValue: 'Basic' },
   { key: 'advance', displayValue: 'Advance' },
   { key: 'basic', displayValue: 'Key' }];
 
   ngOnInit() {
+    this.userForm.form.patchValue({
+      subscription: 'advance'
+    })
   }
-
+  onSubmit() {
+    console.log(this.userForm.value);
+    console.log(this.userForm.valid);
+  }
 }

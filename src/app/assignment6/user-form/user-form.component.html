@@ -1,24 +1,35 @@
 <div class="row">
   <div class="col-md-12">
-    <form (ngSubmit)="onSubmit()" #f=>
+    <form (ngSubmit)="onSubmit()" #f=ngForm>
       <div class="form-group">
-        <label for="useremail">Email address</label>
-        <input type="email" class="form-control" id="useremail" placeholder="Enter email">
+        <label for="useremail">Email address*</label>
+        <input type="email" class="form-control" id="useremail" name="useremail" ngModel 
+        placeholder="Enter email"
+        email
+        required
+        #e="ngModel">
       </div>
+      <div class="alert alert-danger" *ngIf="e.invalid && e.touched">Enter valid email</div>
       <br>
       <div class="form-group">
         <label for="subscription">Subscription</label>
-        <select class="form-control" id="subscription" NgModel>
-          <option *ngFor="let subType of subscriptionTypes" value="subType.key">{{subType.displayValue}}
+        <select class="form-control" id="subscription" ngModel name="subscription" #s="ngModel">
+          <option *ngFor="let subType of subscriptionTypes" 
+          value="{{subType.key}}">{{subType.displayValue}}
           </option>
         </select>
+        <div class="alert alert-danger" *ngIf="s.invalid && s.touched">Select valid Subscription</div>
       </div>
       <div class="form-group">
-        <label for="password">Password</label>
-        <input type="tex" class="form-control" id="password" NgModel>
+        <label for="password">Password*</label>
+        <input type="tex" class="form-control" id="password" name="password" 
+        ngModel
+        required
+        #p="ngModel">
+        <div class="alert alert-danger" *ngIf="p.invalid && p.touched">Password is required.</div>
       </div>
       <div class="form-group">
-        <button class="btn btn-primary">Submit</button>
+        <button class="btn btn-primary" [disabled]="f.invalid">Submit</button>
       </div>
     </form>
   </div>
