@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -8,7 +8,10 @@ import { NgForm } from '@angular/forms';
 })
 export class UserFormComponent implements OnInit {
 
-  @ViewChild("f") userForm: NgForm;
+  @ViewChild('f') userForm: NgForm;
+  defaultSubscription = 'advance';
+  userData = { useremail: '', subscription: '', password: '' };
+  displayNotAllowed = true;
 
   constructor() { }
   subscriptionTypes = [{ key: 'basic', displayValue: 'Basic' },
@@ -16,12 +19,16 @@ export class UserFormComponent implements OnInit {
   { key: 'basic', displayValue: 'Key' }];
 
   ngOnInit() {
-    this.userForm.form.patchValue({
-      subscription: 'advance'
-    })
+
   }
   onSubmit() {
     console.log(this.userForm.value);
-    console.log(this.userForm.valid);
+    console.log('IsValid : ' + this.userForm.valid);
+
+    this.userData.useremail = this.userForm.value.useremail;
+    this.userData.subscription = this.userForm.value.subscription;
+    this.userData.password = this.userForm.value.password;
+    this.displayNotAllowed = false;
+    this.userForm.reset();
   }
 }

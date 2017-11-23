@@ -1,36 +1,42 @@
 <div class="row">
   <div class="col-md-12">
+      <div class="alert alert-danger" role="alert" *ngIf="f.invalid && f.touched">
+          <strong>Oh snap!</strong> Change a few things up and try submitting again.
+        </div>
+    </div>
+  </div>    
+<div class="row">
+  <div class="col-md-12">
     <form (ngSubmit)="onSubmit()" #f=ngForm>
       <div class="form-group">
-        <label for="useremail">Email address*</label>
-        <input type="email" class="form-control" id="useremail" name="useremail" ngModel 
-        placeholder="Enter email"
-        email
-        required
-        #e="ngModel">
+        <label for="useremail">Email address*:</label>
+        <input type="email" class="form-control" id="useremail" name="useremail" ngModel placeholder="Enter email" email required
+          #e="ngModel">
       </div>
       <div class="alert alert-danger" *ngIf="e.invalid && e.touched">Enter valid email</div>
-      <br>
       <div class="form-group">
-        <label for="subscription">Subscription</label>
-        <select class="form-control" id="subscription" ngModel name="subscription" #s="ngModel">
-          <option *ngFor="let subType of subscriptionTypes" 
-          value="{{subType.key}}">{{subType.displayValue}}
+        <label for="subscription">Choose Subscription:</label>
+        <select class="form-control" id="subscription" [ngModel]="defaultSubscription" name="subscription" #s="ngModel">
+          <option *ngFor="let subType of subscriptionTypes" value="{{subType.key}}">{{subType.displayValue}}
           </option>
         </select>
         <div class="alert alert-danger" *ngIf="s.invalid && s.touched">Select valid Subscription</div>
       </div>
       <div class="form-group">
-        <label for="password">Password*</label>
-        <input type="tex" class="form-control" id="password" name="password" 
-        ngModel
-        required
-        #p="ngModel">
-        <div class="alert alert-danger" *ngIf="p.invalid && p.touched">Password is required.</div>
+        <label for="password">Password*:</label>
+        <input type="text" class="form-control" id="password" name="password" ngModel required #p="ngModel" placeholder="Enter password">
       </div>
+      <div class="alert alert-danger" *ngIf="p.invalid && p.touched" >Password is required.</div>
       <div class="form-group">
         <button class="btn btn-primary" [disabled]="f.invalid">Submit</button>
       </div>
     </form>
+    <hr>
+    <ul class="list-group" [hidden]="displayNotAllowed">
+      <li class="list-group-item active">You have Entered following Data</li>
+      <li class="list-group-item"><strong>Email:</strong> {{userData.useremail}}</li>
+      <li class="list-group-item"><strong>Subscription:</strong> {{userData.subscription}}</li>
+      <li class="list-group-item"><strong>Password:</strong> {{userData.password}}</li>
+    </ul>
   </div>
 </div>
