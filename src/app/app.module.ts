@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AssignmentComponent } from '../app/assignment/assignment.component'
@@ -15,6 +15,7 @@ import { InactiveUsersComponent } from './assignment5/inactive-users/inactive-us
 import { UserService } from './assignment5/users.service';
 import { CounterService } from './assignment5/counter.service';
 import { UserFormComponent } from './assignment6/user-form/user-form.component';
+import { ReactiveFormComponent } from './assignment7/reactive-form/reactive-form.component';
 
 @NgModule({
   declarations: [
@@ -28,11 +29,13 @@ import { UserFormComponent } from './assignment6/user-form/user-form.component';
     UnlessDirective,
     ActiveUsersComponent,
     InactiveUsersComponent,
-    UserFormComponent
+    UserFormComponent,
+    ReactiveFormComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [UserService, CounterService],
   bootstrap: [AppComponent]

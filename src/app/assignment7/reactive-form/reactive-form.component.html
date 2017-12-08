@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-md-12">
+    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+      <div formGroupName="projectMainData">
+        <div class="form-group">
+          <label for="projectName">Project Name</label>
+          <input type="text" id="projectName" class="form-control" formControlName="projectName">
+        </div>
+        <div class="form-group">
+          <label for="email">Project email</label>
+          <input type="email" id="email" class="form-control" formControlName="email">
+          <div class="alert alert-danger" *ngIf="projectForm.get('projectMainData.email').invalid && projectForm.get('projectMainData.email').touched">Select valid email</div>
+          <div class="alert alert-danger" *ngIf="projectForm.get('projectMainData.email').errors['emailIsInvalid']">forbidden email</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="projectStatus">Project Status</label>
+        <select id="projectStatus" formControlName="projectStatus" class="form-control">
+          <option *ngFor="let status of projectStatusList" value="{{status.key}}">{{status.displayValue}}</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+  </div>
+</div>
