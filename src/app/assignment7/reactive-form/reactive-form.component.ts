@@ -23,11 +23,14 @@ export class ReactiveFormComponent implements OnInit {
           null,
           [Validators.required], // this.forbiddenProjectName.bind(this)],
           this.asyncForbiddenProjectName.bind(this)), // async validator
-        'email': new FormControl(null, [Validators.email, Validators.required])
+        'email': new FormControl(null, [Validators.email, Validators.required], this.notAllowedEmail)
       }),
       'projectStatus': new FormControl(null)
     });
   }
+
+  get projectName() { return this.projectForm.get('projectMainData.projectName'); }
+  get email() { return this.projectForm.get('projectMainData.email'); }
 
   onSubmit() {
     console.log(this.projectForm);
@@ -46,7 +49,8 @@ export class ReactiveFormComponent implements OnInit {
         if (this.projectNameBlackList.includes(control.value)) {
           resolve({ 'notAllowed': true });
         } else {
-          resolve(null); // resolve({ 'notAllowed': false }); it is intutive to send this object with false but to make it work we need to pass null
+          // resolve({ 'notAllowed': false }); it is intutive to send this object with false but to make it work we need to pass null
+          resolve(null);
         }
       }, 1500);
     });
@@ -59,7 +63,8 @@ export class ReactiveFormComponent implements OnInit {
         if (control.value === 'test@test.com') {
           resolve({ 'emailIsInvalid': true });
         } else {
-          resolve(null); // resolve({ 'emailIsInvalid': false }); it is intutive to send this object with false but to make it work we need to pass null
+          // resolve({ 'emailIsInvalid': false }); it is intutive to send this object with false but to make it work we need to pass null
+          resolve(null);
         }
       }, 1500);
     });

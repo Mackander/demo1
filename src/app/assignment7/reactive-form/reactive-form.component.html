@@ -5,14 +5,19 @@
         <div class="form-group">
           <label for="projectName">Project Name</label>
           <input type="text" id="projectName" class="form-control" formControlName="projectName">
-          <div class="alert alert-danger" *ngIf="projectForm.get('projectMainData.projectName').touched && projectForm.get('projectMainData.projectName').invalid">This name is not allowed</div>
-          <!-- <div class="alert alert-danger" *ngIf="projectForm.get('projectMainData.projectName').touched && projectForm.get('projectMainData.projectName').errors['notAllowed']">This name is not allowed</div> -->
+          <div class="alert alert-danger" *ngIf="projectName.invalid && (projectName.dirty || projectName.touched)">
+            <div *ngIf="projectName.errors.required">Name is required.</div>
+            <div *ngIf="projectName.errors.notAllowed">This name is not notAllowed</div>
+          </div>
         </div>
         <div class="form-group">
           <label for="email">Project email</label>
           <input type="email" id="email" class="form-control" formControlName="email">
-          <div class="alert alert-danger" *ngIf="projectForm.get('projectMainData.email').invalid && projectForm.get('projectMainData.email').touched">Select valid email</div>
-          <!-- <div class="alert alert-danger" *ngIf="projectForm.get('projectMainData.email').touched && projectForm.get('projectMainData.email').errors['emailIsInvalid']">forbidden email</div> -->
+          <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+            <div *ngIf="email.errors.required">Email is required.</div>
+            <div *ngIf="email.errors.email">Email is invalid.</div>
+            <div *ngIf="email.errors.emailIsInvalid">This email is not not allowed</div>
+          </div>
         </div>
       </div>
       <div class="form-group">
