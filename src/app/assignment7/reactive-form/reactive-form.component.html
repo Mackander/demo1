@@ -5,12 +5,14 @@
         <div class="form-group">
           <label for="projectName">Project Name</label>
           <input type="text" id="projectName" class="form-control" formControlName="projectName">
+          <div class="alert alert-danger" *ngIf="projectForm.get('projectMainData.projectName').touched && projectForm.get('projectMainData.projectName').invalid">This name is not allowed</div>
+          <!-- <div class="alert alert-danger" *ngIf="projectForm.get('projectMainData.projectName').touched && projectForm.get('projectMainData.projectName').errors['notAllowed']">This name is not allowed</div> -->
         </div>
         <div class="form-group">
           <label for="email">Project email</label>
           <input type="email" id="email" class="form-control" formControlName="email">
           <div class="alert alert-danger" *ngIf="projectForm.get('projectMainData.email').invalid && projectForm.get('projectMainData.email').touched">Select valid email</div>
-          <div class="alert alert-danger" *ngIf="projectForm.get('projectMainData.email').errors['emailIsInvalid']">forbidden email</div>
+          <!-- <div class="alert alert-danger" *ngIf="projectForm.get('projectMainData.email').touched && projectForm.get('projectMainData.email').errors['emailIsInvalid']">forbidden email</div> -->
         </div>
       </div>
       <div class="form-group">
@@ -19,7 +21,7 @@
           <option *ngFor="let status of projectStatusList" value="{{status.key}}">{{status.displayValue}}</option>
         </select>
       </div>
-      <button class="btn btn-primary" type="submit">Submit</button>
+      <button class="btn btn-primary" type="submit" [disabled]="projectForm.invalid">Submit</button>
     </form>
   </div>
 </div>

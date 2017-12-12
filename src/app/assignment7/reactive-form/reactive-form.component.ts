@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { controlNameBinding } from '@angular/forms/src/directives/reactive_directives/form_control_name';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 
 
@@ -17,13 +16,14 @@ export class ReactiveFormComponent implements OnInit {
 
   projectNameBlackList = ['Test'];
 
-  constructor(private formBuilder: FormBuilder) { }
-
   ngOnInit() {
     this.projectForm = new FormGroup({
       'projectMainData': new FormGroup({
-        'projectName': new FormControl(null, [Validators.required, this.forbiddenProjectName.bind(this)]),
-        'email': new FormControl(null, [Validators.email, Validators.required], this.notAllowedProjectName)
+        'projectName': new FormControl(
+          null,
+          [Validators.required], // this.forbiddenProjectName.bind(this)],
+          this.asyncForbiddenProjectName.bind(this)), // async validator
+        'email': new FormControl(null, [Validators.email, Validators.required])
       }),
       'projectStatus': new FormControl(null)
     });
@@ -35,18 +35,31 @@ export class ReactiveFormComponent implements OnInit {
 
   forbiddenProjectName(control: FormControl): { [s: string]: boolean } {
     if (this.projectNameBlackList.includes(control.value)) {
-      return { 'This String is not allowed': false };
+      return { 'notAllowed': true };
     }
-    return null;
+    return null; // {'notAllowed': false }; it is intutive to send this object with false but to make it work we need to pass null
   }
 
-  notAllowedProjectName(control: FormControl): Promise<any> | Observable<any> {
+  asyncForbiddenProjectName(control: FormControl): Promise<any> | Observable<any> {
+    const promise = new Promise<any>((resolve, reject) => {
+      setTimeout(() => {
+        if (this.projectNameBlackList.includes(control.value)) {
+          resolve({ 'notAllowed': true });
+        } else {
+          resolve(null); // resolve({ 'notAllowed': false }); it is intutive to send this object with false but to make it work we need to pass null
+        }
+      }, 1500);
+    });
+    return promise;
+  }
+
+  notAllowedEmail(control: FormControl): Promise<any> | Observable<any> {
     const promise = new Promise<any>((resolve, reject) => {
       setTimeout(() => {
         if (control.value === 'test@test.com') {
           resolve({ 'emailIsInvalid': true });
         } else {
-          resolve(null);
+          resolve(null); // resolve({ 'emailIsInvalid': false }); it is intutive to send this object with false but to make it work we need to pass null
         }
       }, 1500);
     });
