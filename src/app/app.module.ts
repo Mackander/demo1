@@ -17,6 +17,9 @@ import { CounterService } from './assignment5/counter.service';
 import { UserFormComponent } from './assignment6/user-form/user-form.component';
 import { ReactiveFormComponent } from './assignment7/reactive-form/reactive-form.component';
 import { FilterPipe } from './filter.pipe';
+import { FilterComponent } from './assignment8/filter/filter.component';
+import { ReversePipe } from './assignment8/reverse.pipe';
+import { SortPipe } from './assignment8/sort.pipe';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { FilterPipe } from './filter.pipe';
     InactiveUsersComponent,
     UserFormComponent,
     ReactiveFormComponent,
-    FilterPipe
+    FilterPipe,
+    FilterComponent,
+    ReversePipe,
+    SortPipe
   ],
   imports: [
     BrowserModule,
