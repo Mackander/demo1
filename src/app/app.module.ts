@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { AssignmentComponent } from '../app/assignment/assignment.component'
+import { AssignmentComponent } from '../app/assignment/assignment.component';
 import { Assignment3Component } from '../app/assignment3/assignment3.component';
 import { GameControlComponent } from './assignment4/game-control/game-control.component';
 import { OddComponent } from './assignment4/odd/odd.component';
@@ -20,6 +20,9 @@ import { FilterPipe } from './filter.pipe';
 import { FilterComponent } from './assignment8/filter/filter.component';
 import { ReversePipe } from './assignment8/reverse.pipe';
 import { SortPipe } from './assignment8/sort.pipe';
+import { ServerService } from './server.service';
+import { HttpModule } from '@angular/http';
+
 
 @NgModule({
   declarations: [
@@ -39,13 +42,15 @@ import { SortPipe } from './assignment8/sort.pipe';
     FilterComponent,
     ReversePipe,
     SortPipe
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpModule
   ],
-  providers: [UserService, CounterService],
+  providers: [UserService, CounterService, ServerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

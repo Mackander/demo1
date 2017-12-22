@@ -44,6 +44,19 @@
 </div>
 -->
 
+<!-- Assingment 8 
 <div class="container">
   <app-filter></app-filter>
+</div>
+
+-->
+
+<div class="container">
+  <div class="row">
+    <h1>{{appName | async}}</h1>
+    <div class="col-xs-12">
+      <button class="btn btn-primary" (click)="onSave()">Save</button>
+      <button class="btn btn-primary" (click)="onGet()">Get</button>
+    </div>
+  </div>
 </div>
